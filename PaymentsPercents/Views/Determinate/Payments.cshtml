@@ -1,0 +1,74 @@
+﻿@model PaymentsPercents.Model.PaymentsModel
+
+@{
+    ViewData["Title"] = "Payments";
+}
+
+<div style="margin-top: 15%">
+    <h1>Payments</h1>
+
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">№ payment</th>
+            <th scope="col">Payment date</th>
+            <th scope="col">Amount of payment</th>
+            <th scope="col">Main debt</th>
+            <th scope="col">Interest per month</th>
+            <th scope="col">Current debt balance</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="col">
+                @for (int i = 1; i <= Model.CurrentDebtBalance.Count; i++)
+                {
+                    <p>@i</p>
+                }
+            </th>
+            <th scope="col">
+                @foreach (var item in Model.DatesList)
+                {
+                    <p>@item</p>
+                }
+            </th>
+            <th scope="col">
+                @foreach (var item in Model.AmountOfPaymenstInMonth)
+                {
+                    <p>@item $</p>
+                }
+            </th>
+            <th scope="col">
+                @for (int i = 0; i < Model.CurrentDebtBalance.Count; i++)
+                {
+                    <p>@Model.MainDebt $</p>
+                }
+            </th>
+            <th scope="col">
+                @foreach (var item in Model.MonthInterestPayments)
+                {
+                    <p>@item $</p>
+                }
+            </th>
+            <th scope="col">
+                @foreach (var item in Model.CurrentDebtBalance)
+                {
+                    <p>@item $</p>
+                }
+            </th>
+        </tr>
+
+        </tbody>
+    </table>
+    <table>
+        <tr class="table-warning">
+            <th scope="row">
+
+
+                <p style="color: red; font-size: 2em"> Sum interest payments =  @Model.SumInterestPayments $</p>
+
+            </th>
+        </tr>
+    </table>
+</div>
+<a style="margin-top: 30px" asp-controller="Determinate" asp-action="Index" class="btn btn-outline-primary">Return to enter new data</a>
